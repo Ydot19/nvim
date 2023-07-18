@@ -52,6 +52,38 @@ local plugins = {
       enabled = true,
       enabled_commands = true,
     },
+  },
+  {
+    "tpope/vim-dadbod",
+    dependencies = {
+      "kristijanhusak/vim-dadbod-ui",
+      "kristijanhusak/vim-dadbod-completion",
+    },
+    cmd = { "DBUIToggle", "DBUI", "DBUIAddConnection", "DBUIFindBuffer", "DBUIRenameBuffer", "DBUILastQueryInfo" },
+    config = function ()
+      require("custom.configs.dadbod").setup()
+    end
+  },
+  {
+    "nanotee/sqls.nvim",
+    module = { "sqls" },
+    cmd = {
+      "SqlsExecuteQuery",
+      "SqlsExecuteQueryVertical",
+      "SqlsShowDatabases",
+      "SqlsShowSchemas",
+      "SqlsShowConnections",
+      "SqlsSwitchDatabase",
+      "SqlsSwitchConnection",
+    },
+  },
+  {
+    "github/copilot.vim",
+    cmd = "Copilot",
+    ft = {"go", "gomod", "sql"},
+    config = function ()
+      require("custom.configs.copilot").setup()
+    end
   }
 }
 
