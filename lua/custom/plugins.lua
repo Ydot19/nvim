@@ -1,12 +1,100 @@
 local plugins = {
   {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        -- defaults
+        "vim",
+        "vimdoc",
+        "lua",
+
+        -- general // development agnostic
+        "sql",
+        "dockerfile",
+        "graphql",
+        "proto",
+        "thrift",
+        "regex",
+
+        -- tf 
+        "hcl",
+        "terraform",
+
+        -- files and readme
+        "markdown",
+        "markdown_inline",
+        "toml",
+        "yaml",
+        "mermaid",
+
+        -- git
+        "git_config",
+        "git_rebase",
+
+        -- golang
+        "go",
+        "gomod",
+        "gosum",
+        "gowork",
+
+        -- web 
+        "html",
+        "scss",
+        "css",
+        "json",
+        "svelte",
+        "vue",
+        "tsx",
+        "typescript",
+        "javascript",
+
+        -- others
+        "python",
+        "ruby",
+        "cpp",
+        "cuda",
+      }
+    }
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        -- golang 
         "gopls",
-        "deno",
         "delve",
+        "golangci-lint",
+        "goimports",
+        -- js/ts 
+        "standardjs",
+        "ts-standard",
+        "svelte-language-server",
+        "vetur-vls",
+        "deno",
+        "eslint-lsp",
+        "css-lsp",
+        "html-lsp",
+        -- communication protocols
+        "graphql-language-service-cli",
+        "protolint",
+        "buf",
+        -- python
+        "pydocstyle",
+        "pyre",
+        "black",
+        -- rust
+        "rust-analyzer",
+        "rustfmt",
 
+        -- misc
+        "bash-language-server",
+        "terraform-ls",
+        "sqlfmt",
+        "ruby-lsp",
       },
     },
   },
@@ -83,7 +171,18 @@ local plugins = {
   {
     "github/copilot.vim",
     cmd = "Copilot",
-    ft = {"go", "gomod", "sql"},
+    ft = {
+      "go",
+      "gomod",
+      "python",
+      "typescript",
+      "javascript",
+      "rust",
+      "ruby",
+      "terraform",
+      "gitcommit",
+      "sql",
+     },
     config = function ()
       require("custom.configs.copilot").setup()
     end
