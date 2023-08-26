@@ -96,6 +96,9 @@ local plugins = {
         "typescript",
         "javascript",
 
+        -- rust
+        "rust",
+
         -- others
         "python",
         "ruby",
@@ -135,7 +138,7 @@ local plugins = {
         -- rust
         "rust-analyzer",
         "rustfmt",
-
+        "codelldb",
         -- misc
         "bash-language-server",
         "terraform-ls",
@@ -265,6 +268,24 @@ local plugins = {
     lazy = false,
     ft = "markdown",
     build = ":call mkdp#util#install()",
+  },
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function ()
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    opts = function ()
+      return require "custom.configs.rust-tools"
+    end,
+    config = function (_, opts)
+      require('rust-tools').setup(opts)
+    end
   }
 }
 
