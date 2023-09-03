@@ -286,6 +286,33 @@ local plugins = {
     config = function (_, opts)
       require('rust-tools').setup(opts)
     end
+  },
+  {
+    "ggandor/leap.nvim",
+    keys = {
+      { "s", mode = { "n", "o" }, desc = "Leap forward to" },
+      { "S", mode = { "n", "o" }, desc = "Leap backward to" },
+      { "gs", mode = { "n", "o" }, desc = "Leap from windows" },
+    },
+    config = function(_, opts)
+      local leap = require("leap")
+      for k, v in pairs(opts) do
+        leap.opts[k] = v
+      end
+      leap.add_default_mappings(true)
+      vim.keymap.del({ "x", "o" }, "x")
+      vim.keymap.del({ "x", "o" }, "X")
+    end,
+  },
+  {
+    'stevearc/oil.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+      { "-", ":Oil<cr>", mode = { "n" }, desc = "Open parent directory" }
+    },
+    config = function()
+      require('oil').setup()
+    end
   }
 }
 
